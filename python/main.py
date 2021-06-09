@@ -59,7 +59,7 @@ def transversion(s):
         return random.choice((A, G))
 
 
-with open("codon.txt", "r") as f:
+with open("../codon.txt", "r") as f:
     raw_codon = f.read()
 matches = re.findall(
     r"(?P<abbrev>[UCGA]{3})\s+(?P<full_name>(\w|ä)+)", raw_codon)
