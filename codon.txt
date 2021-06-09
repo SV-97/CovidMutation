@@ -1,0 +1,79 @@
+UUU 	Phenylalanin (Phe)
+UUC 	Phenylalanin (Phe)
+UUA 	Leucin (Leu)
+UUG 	Leucin (Leu)
+	
+UCU 	Serin (Ser)
+UCC 	Serin (Ser)
+UCA 	Serin (Ser)
+UCG 	Serin (Ser)
+	
+UAU 	Tyrosin (Tyr)
+UAC 	Tyrosin (Tyr)
+UAA 	Stop
+UAG 	Stop
+	
+UGU 	Cystein (Cys)
+UGC 	Cystein (Cys)
+UGA 	Stop*
+UGG 	Tryptophan (Trp)
+C 	
+CUU 	Leucin (Leu)
+CUC 	Leucin (Leu)
+CUA 	Leucin (Leu)
+CUG 	Leucin (Leu)
+	
+CCU 	Prolin (Pro)
+CCC 	Prolin (Pro)
+CCA 	Prolin (Pro)
+CCG 	Prolin (Pro)
+	
+CAU 	Histidin (His)
+CAC 	Histidin (His)
+CAA 	Glutamin (Gln)
+CAG 	Glutamin (Gln)
+	
+CGU 	Arginin (Arg)
+CGC 	Arginin (Arg)
+CGA 	Arginin (Arg)
+CGG 	Arginin (Arg)
+A 	
+AUU 	Isoleucin (Ile)
+AUC 	Isoleucin (Ile)
+AUA 	Isoleucin (Ile)
+AUG 	Methionin (Met)*
+	
+ACU 	Threonin (Thr)
+ACC 	Threonin (Thr)
+ACA 	Threonin (Thr)
+ACG 	Threonin (Thr)
+	
+AAU 	Asparagin (Asn)
+AAC 	Asparagin (Asn)
+AAA 	Lysin (Lys)
+AAG 	Lysin (Lys)
+	
+AGU 	Serin (Ser)
+AGC 	Serin (Ser)
+AGA 	Arginin (Arg)
+AGG 	Arginin (Arg)
+G 	
+GUU 	Valin (Val)
+GUC 	Valin (Val)
+GUA 	Valin (Val)
+GUG 	Valin (Val)
+	
+GCU 	Alanin (Ala)
+GCC 	Alanin (Ala)
+GCA 	Alanin (Ala)
+GCG 	Alanin (Ala)
+	
+GAU 	Asparaginsäure (Asp)
+GAC 	Asparaginsäure (Asp)
+GAA 	Glutaminsäure (Glu)
+GAG 	Glutaminsäure (Glu)
+	
+GGU 	Glycin (Gly)
+GGC 	Glycin (Gly)
+GGA 	Glycin (Gly)
+GGG 	Glycin (Gly) 
