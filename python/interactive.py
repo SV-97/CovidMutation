@@ -1,7 +1,11 @@
+from matplotlib.widgets import Slider, Button, RadioButtons
+import matplotlib.pyplot as plt
+import numpy as np
+
 from scipy.special import gamma, loggamma, comb
 import numpy as np
 import matplotlib.pyplot as plt
-from math import factorial
+from math import factorial, log
 from functools import wraps
 from poly import Poly
 
@@ -111,23 +115,58 @@ def rho(value, element_bound, size, total_bound):
 poly_deg = ELEMENT_BOUND * SIZE + 1
 print(f"{poly_deg=}, {poly.degree=}")
 
-fig = plt.figure()
-plt.gca().axhline(0)
-# reversed(range(TOTAL_BOUND // SIZE, ELEMENT_BOUND + 1)):
-for element_bound in [ELEMENT_BOUND]:
-    #element_bound = 3
-    print(f"n={TOTAL_BOUND}, r={element_bound}, k={SIZE}")
-    #vals = list(range(ELEMENT_BOUND))
-    #counts = [rho(m, ELEMENT_BOUND, SIZE, TOTAL_BOUND) for m in vals]
-    #counts = [rho(m, element_bound, SIZE, TOTAL_BOUND) for m in vals]
-    # print(sum(counts))
-    # counts = np.array(counts)  # / sum(counts)
-    ax = plt.gca()
-    #ax.plot(vals, counts)
-    #ax.scatter(vals, counts, label=f"n={TOTAL_BOUND}, r={element_bound}, k={SIZE}", )
-    ax.plot(list(range(len(poly.coeffs))), poly.coeffs, "--")
-    ax.scatter(list(range(len(poly.coeffs))), poly.coeffs)
 
-    # ax.set_yscale("log")
-plt.legend()
+fig, ax = plt.subplots()
+plt.subplots_adjust(left=0.25, bottom=0.25)
+l1, = plt.plot(list(range(len(poly.coeffs))), poly.coeffs, "--")
+#l2 = plt.scatter(list(range(len(poly.coeffs))), poly.coeffs)
+ax.margins(x=0)
+plt.gca().axhline(0)
+
+axcolor = 'lightgoldenrodyellow'
+ax_total_bound = plt.axes([0.25, 0.05, 0.65, 0.03], facecolor=axcolor)
+ax_element_bound = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
+ax_size = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor=axcolor)
+
+
+slider_total_bound = Slider(ax_total_bound, "Total Bound",
+                            0, 200, valinit=TOTAL_BOUND, valstep=1)
+slider_element_bound = Slider(ax_element_bound, "Element Bound",
+                              0, 200, valinit=ELEMENT_BOUND, valstep=1)
+slider_size = Slider(ax_size, "Size", 0, 200, valinit=SIZE, valstep=1)
+
+
+def update(val):
+    print("updating")
+    total_bound = int(slider_total_bound.val)
+    element_bound = int(slider_element_bound.val)
+    size = int(slider_size.val)
+
+    poly = get_poly(element_bound, size)
+    print(poly)
+
+    def phi(element_bound, size, total_bound):
+        print(f"{total_bound=}")
+        return poly.coeffs[total_bound]
+
+    @non_negative
+    @clamp_below(0)
+    def rho(value, element_bound, size, total_bound):
+        return phi(element_bound, size-1, total_bound - value)
+
+    c = [log(y) for y in poly.coeffs]
+
+    poly_deg = element_bound * SIZE + 1
+    x = list(range(len(poly.coeffs)))
+
+    ax.axis([x[0], len(x), 0, max(c) + 1])
+    l1.set_data(x, c)
+    #l2.set_data(x, poly.coeffs)
+    fig.canvas.draw_idle()
+
+
+slider_total_bound.on_changed(update)
+slider_element_bound.on_changed(update)
+slider_size.on_changed(update)
+
 plt.show()

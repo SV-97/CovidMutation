@@ -2,6 +2,7 @@ from itertools import zip_longest, dropwhile
 from operator import add, sub
 from functools import total_ordering, reduce
 from typing import List, Union, Callable, Iterable
+from math import prod
 
 Number = Union[float, int, complex]
 
@@ -66,7 +67,8 @@ class Poly():
         return Poly(*coeffs_new)
 
     def __pow__(self, i: int) -> "Poly":
-        if i == 0:
+        return prod((self for _ in range(i)), start=Poly(1))
+        """if i == 0:
             return Poly(1)
         else:
             res = Poly(*self.coeffs)
@@ -75,7 +77,7 @@ class Poly():
                     res = res * res
                 if c == "1":
                     res = (res * res) * self
-            return res
+            return res"""
 
     def __call__(self, x: Number) -> Number:
         def horner(old, new):
@@ -88,6 +90,10 @@ class Poly():
 
     def __repr__(self):
         return f"Poly({self.coeffs})"
+
+    @property
+    def degree(self):
+        return len(self.coeffs)
 
 
 if __name__ == "__main__":
